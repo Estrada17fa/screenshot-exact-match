@@ -35,7 +35,7 @@ Primero reviso si tu proyecto puede enviar correos. Para enviar avisos necesitas
 - **Correo aún no disponible:** tu proyecto todavía no tiene un dominio de correo, así que /admin mostrará arriba un contador de reservas "pendiente".
 
 ## Lo que necesito de ti
-- **El correo de administración** (ya te lo pregunté en el chat).
+- **Correo de administración:** aleinadnaveja14@gmail.com (podrá entrar a /admin; los avisos por correo llegarán ahí cuando haya un dominio de correo verificado).
 
 ## Detalles técnicos
 - Activar Lovable Cloud. Tabla `bookings` con todos los campos del brief + `internal_notes`, `assigned_nanny`, `payment_link`, `paid_amount`, `nannies_count`; `folio` generado con una secuencia (`'K-' || lpad(nextval,4,'0')`) y un trigger.
