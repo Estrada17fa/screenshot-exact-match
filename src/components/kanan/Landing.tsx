@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Menu, X, ArrowDown, Check, ShieldCheck, HeartPulse, Languages, Camera, Shield, Sun as SunI, Moon, Stars, PartyPopper, Home, Plane, Plus, MessageCircle } from "lucide-react";
+import { Menu, X, ArrowDown, Check, ShieldCheck, HeartPulse, Languages, Camera, Shield, Plus, MessageCircle } from "lucide-react";
 import { useLang } from "@/content/i18n";
-import { services, team, waLink, type Tone } from "@/content/data";
+import { team, waLink } from "@/content/data";
 import { cn } from "@/lib/utils";
+import { Link } from "@tanstack/react-router";
+import { Plans } from "./Plans";
 import logoAsset from "@/assets/kanan-logo.png.asset.json";
 
 export function SunMark({ className }: { className?: string }) {
@@ -59,7 +61,7 @@ function Navbar() {
     on(); window.addEventListener("scroll", on, { passive: true });
     return () => window.removeEventListener("scroll", on);
   }, []);
-  const links = [["#servicios", t.nav.services], ["#equipo", t.nav.team], ["#preguntas", t.nav.faq]] as const;
+  const links = [["#planes", t.nav.services], ["#equipo", t.nav.team], ["#preguntas", t.nav.faq]] as const;
   return (
     <header className={cn("fixed inset-x-0 top-0 z-50 transition-all", scrolled || open ? "glass border-x-0 border-t-0" : "border-b border-transparent")}>
       <div className="container-k flex h-16 items-center justify-between lg:h-20">
@@ -113,7 +115,7 @@ function Hero() {
           <p style={d(3)} className="hero-in mt-6 hidden max-w-md text-[17px] text-muted-foreground lg:block">{t.hero.sub}</p>
           <div style={d(4)} className="hero-in mt-8 hidden gap-3 lg:flex">
             <a href={waLink(t.wa)} target="_blank" rel="noopener noreferrer" className={btnPink}><MessageCircle className="size-5" />{t.hero.cta}</a>
-            <a href="#servicios" className={btnGhost}>{t.hero.cta2}</a>
+            <a href="#planes" className={btnGhost}>{t.hero.cta2}</a>
           </div>
         </div>
         <div className="relative min-h-0 flex-1 pb-20 lg:aspect-square lg:pb-0">
@@ -138,18 +140,11 @@ function Hero() {
       </div>
       <div className="glass fixed inset-x-3 bottom-3 z-40 flex items-center gap-2 rounded-full p-2 lg:hidden">
         <a href={waLink(t.wa)} target="_blank" rel="noopener noreferrer" className={cn(btnPink, "flex-1")}><MessageCircle className="size-5" />{t.hero.cta}</a>
-        <a href="#servicios" aria-label={t.hero.cta2} className="grid size-12 place-items-center rounded-full bg-card"><ArrowDown className="size-5" /></a>
+        <a href="#planes" aria-label={t.hero.cta2} className="grid size-12 place-items-center rounded-full bg-card"><ArrowDown className="size-5" /></a>
       </div>
     </section>
   );
 }
-
-const serviceIcons = { sol: SunI, luna: Moon, suenos: Stars, fiesta: PartyPopper, casa: Home, viajera: Plane };
-const toneCls: Record<Tone, string> = {
-  sun: "bg-sun text-sun-foreground",
-  pink: "bg-pink text-pink-foreground",
-  dark: "bg-card text-card-foreground border border-border",
-};
 
 function Carousel({ count, children, className }: { count: number; children: ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -169,32 +164,6 @@ function Carousel({ count, children, className }: { count: number; children: Rea
         {Array.from({ length: count }).map((_, i) => <span key={i} className={cn("h-2 rounded-full transition-all", i === active ? "w-6 bg-sun" : "w-2 bg-border")} />)}
       </div>
     </>
-  );
-}
-
-function Services() {
-  const { t } = useLang();
-  return (
-    <section id="servicios" className="section-k scroll-mt-16">
-      <div className="container-k">
-        <SectionHead title={t.services.title} label={t.services.label} />
-        <Carousel count={services.length}>
-          {services.map(({ key, tone }) => {
-            const s = t.services.items[key]; const Icon = serviceIcons[key];
-            const isPrice = s.price.includes("$");
-            return (
-              <a key={key} href={waLink(t.waService(s.name))} target="_blank" rel="noopener noreferrer"
-                className={cn("lift flex h-[300px] w-[78%] shrink-0 snap-start flex-col rounded-[28px] p-6 sm:w-[45%] lg:w-auto", toneCls[tone])}>
-                <Icon className="size-8" />
-                <h3 className="mt-auto text-[40px] font-extrabold lowercase">{s.name}</h3>
-                <p className="mt-2 text-[15px] opacity-80">{s.desc}</p>
-                <p className="mt-5 font-display text-2xl font-bold">{s.price}{isPrice && <span className="text-base font-medium opacity-70"> {t.services.perHour}</span>}</p>
-              </a>
-            );
-          })}
-        </Carousel>
-      </div>
-    </section>
   );
 }
 
@@ -349,7 +318,8 @@ function Footer() {
         <ul className="flex flex-wrap gap-6 text-sm">
           <li><a href="#" className="inline-block py-3 hover:text-sun">Instagram</a></li>
           <li><a href="#" className="inline-block py-3 hover:text-sun">Facebook</a></li>
-          <li><a href="#" className="inline-block py-3 hover:text-sun">{t.footer.privacy}</a></li>
+          <li><Link to="/aviso-de-privacidad" className="inline-block py-3 hover:text-sun">{t.footer.privacy}</Link></li>
+          <li><Link to="/cancelaciones" className="inline-block py-3 hover:text-sun">{t.footer.cancel}</Link></li>
         </ul>
       </div>
     </footer>
@@ -360,7 +330,7 @@ export function Landing() {
   return (
     <>
       <Navbar />
-      <main><Hero /><Services /><Why /><Team /><Meaning /><Steps /><Faq /><FinalCta /></main>
+      <main><Hero /><Plans /><Steps /><Why /><Team /><Meaning /><Faq /><FinalCta /></main>
       <Footer />
     </>
   );

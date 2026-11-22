@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 
 const es = {
-  nav: { services: "Servicios", team: "Equipo", faq: "Preguntas", book: "Reservar", menu: "Abrir menú", close: "Cerrar menú", lang: "EN", langLabel: "Switch to English" },
+  nav: { services: "Planes", team: "Equipo", faq: "Preguntas", book: "Reservar", menu: "Abrir menú", close: "Cerrar menú", lang: "EN", langLabel: "Switch to English" },
   wa: "Hola, quiero información sobre el servicio de niñeras Kanan.",
   waService: (s: string) => `Hola, quiero información sobre el servicio "${s}" de niñeras Kanan.`,
   hero: { badge: "Niñeras certificadas · Guadalajara", h1a: "Tu tranquilidad,", h1b: "su", words: ["felicidad", "risa", "juego", "aventura"], line: "Niñeras verificadas en Guadalajara", sub: "Niñeras verificadas y con experiencia para cada momento de tu familia.", cta: "Reservar por WhatsApp", cta2: "Ver servicios", verified: "Antecedentes verificados", from: "desde $140 /hr", imgAlt: "Niñera cuidando a tres niñas" },
@@ -21,7 +21,7 @@ const es = {
   ] },
   team: { title: "Nuestro equipo", label: "perfiles verificados · datos protegidos", intro: "Así es nuestro equipo. Tú no tienes que elegir: nosotros asignamos a la niñera ideal según las necesidades de tu familia, y te compartimos su perfil antes del servicio.", years: "años de experiencia", ages: "Edades", langs: "Idiomas", certs: "Certificaciones", spec: "Especialidades", note: "Por la seguridad de nuestras niñeras, no publicamos fotos ni datos personales." },
   meaning: { label: "K'anan · del maya", title: "cuidar y proteger.", text: "No es solo nuestro nombre. Es lo que le prometemos a cada familia y a cada niñera." },
-  steps: { title: "Así de fácil", label: "3 pasos", items: [
+  steps: { title: "Cómo reservar", label: "3 pasos", items: [
     { t: "Escríbenos", d: "Fecha, horario y edades de los niños." },
     { t: "Asignamos a tu niñera", d: "Elegimos a la ideal y te compartimos su perfil." },
     { t: "Disfruta tranquilo", d: "Sal, trabaja o descansa." },
@@ -34,13 +34,13 @@ const es = {
     { q: "¿Qué formas de pago aceptan?", a: "Respuesta por confirmar." },
   ] },
   cta: { title: "Planes a la medida de tu familia", text: "Te confirmamos disponibilidad en minutos.", button: "WhatsApp 33 2984 3381" },
-  footer: { city: "Guadalajara, Jalisco", privacy: "Aviso de privacidad", rights: "Todos los derechos reservados." },
+  footer: { city: "Guadalajara, Jalisco", privacy: "Aviso de privacidad", cancel: "Cancelaciones", rights: "Todos los derechos reservados." },
 };
 
 type Dict = typeof es;
 
 const en: Dict = {
-  nav: { services: "Services", team: "Team", faq: "FAQ", book: "Book", menu: "Open menu", close: "Close menu", lang: "ES", langLabel: "Cambiar a español" },
+  nav: { services: "Plans", team: "Team", faq: "FAQ", book: "Book", menu: "Open menu", close: "Close menu", lang: "ES", langLabel: "Cambiar a español" },
   wa: "Hi, I'd like information about Kanan's nanny service.",
   waService: (s) => `Hi, I'd like information about Kanan's "${s}" nanny service.`,
   hero: { badge: "Certified nannies · Guadalajara", h1a: "Your peace of mind,", h1b: "their", words: ["happiness", "laughter", "play", "adventure"], line: "Verified nannies in Guadalajara", sub: "Vetted, experienced nannies for every moment of your family's life.", cta: "Book on WhatsApp", cta2: "See services", verified: "Background checked", from: "from $140 /hr", imgAlt: "Nanny caring for three girls" },
@@ -60,7 +60,7 @@ const en: Dict = {
   ] },
   team: { title: "Our team", label: "verified profiles · protected data", intro: "This is our team. You don't have to choose: we assign the ideal nanny for your family's needs and share her profile before the service.", years: "years of experience", ages: "Ages", langs: "Languages", certs: "Certifications", spec: "Specialties", note: "For our nannies' safety, we don't publish photos or personal data." },
   meaning: { label: "K'anan · from Maya", title: "to care and protect.", text: "It's not just our name. It's what we promise every family and every nanny." },
-  steps: { title: "That easy", label: "3 steps", items: [
+  steps: { title: "How to book", label: "3 steps", items: [
     { t: "Message us", d: "Date, time and children's ages." },
     { t: "We assign your nanny", d: "We pick the ideal one and share her profile." },
     { t: "Relax", d: "Go out, work or rest." },
@@ -73,7 +73,7 @@ const en: Dict = {
     { q: "What payment methods do you accept?", a: "Answer coming soon." },
   ] },
   cta: { title: "Plans tailored to your family", text: "We confirm availability in minutes.", button: "WhatsApp 33 2984 3381" },
-  footer: { city: "Guadalajara, Jalisco", privacy: "Privacy notice", rights: "All rights reserved." },
+  footer: { city: "Guadalajara, Jalisco", privacy: "Privacy notice", cancel: "Cancellations", rights: "All rights reserved." },
 };
 
 export type Lang = "es" | "en";
