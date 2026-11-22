@@ -94,3 +94,16 @@
   .spin-slow { animation: none; }
   html { scroll-behavior: auto; }
 }
+
+/* Hero load animations: base state visible; animation only adds motion */
+@keyframes hero-in { from { opacity: 0; transform: translateY(20px); } }
+@keyframes sun-rise { from { transform: translate(-50%, 90%); } to { transform: translate(-50%, 18%); } }
+@keyframes float-y { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes word-in { from { opacity: 0; transform: translateY(60%); } }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-in { animation: hero-in .7s ease-out both; }
+  .sun-rise { animation: sun-rise 1.2s ease-out both; }
+  .float-y { animation: float-y 3s ease-in-out infinite; }
+  .word-in { animation: word-in .5s ease-out both; }
+}
+.sun-rise { transform: translate(-50%, 18%); }

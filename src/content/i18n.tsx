@@ -4,7 +4,7 @@ const es = {
   nav: { services: "Servicios", team: "Equipo", faq: "Preguntas", book: "Reservar", menu: "Abrir menú", close: "Cerrar menú", lang: "EN", langLabel: "Switch to English" },
   wa: "Hola, quiero información sobre el servicio de niñeras Kanan.",
   waService: (s: string) => `Hola, quiero información sobre el servicio "${s}" de niñeras Kanan.`,
-  hero: { badge: "Niñeras certificadas · Guadalajara", h1a: "Tu tranquilidad,", h1b: "su felicidad.", sub: "Niñeras verificadas y con experiencia para cada momento de tu familia.", cta: "Reservar por WhatsApp", cta2: "Ver servicios", verified: "Antecedentes verificados", from: "desde $140 /hr", imgAlt: "Niñera cuidando a tres niñas" },
+  hero: { badge: "Niñeras certificadas · Guadalajara", h1a: "Tu tranquilidad,", h1b: "su", words: ["felicidad", "risa", "juego", "aventura"], line: "Niñeras verificadas en Guadalajara", sub: "Niñeras verificadas y con experiencia para cada momento de tu familia.", cta: "Reservar por WhatsApp", cta2: "Ver servicios", verified: "Antecedentes verificados", from: "desde $140 /hr", imgAlt: "Niñera cuidando a tres niñas" },
   services: { title: "Servicios", label: "por hora · por niñera", perHour: "/hr", from: "desde", items: {
     sol: { name: "sol", desc: "De día · pendientes, citas o una tarde libre.", price: "$170" },
     luna: { name: "luna", desc: "De noche · sal a cenar sin preocupaciones.", price: "$190" },
@@ -43,7 +43,7 @@ const en: Dict = {
   nav: { services: "Services", team: "Team", faq: "FAQ", book: "Book", menu: "Open menu", close: "Close menu", lang: "ES", langLabel: "Cambiar a español" },
   wa: "Hi, I'd like information about Kanan's nanny service.",
   waService: (s) => `Hi, I'd like information about Kanan's "${s}" nanny service.`,
-  hero: { badge: "Certified nannies · Guadalajara", h1a: "Your peace of mind,", h1b: "their happiness.", sub: "Vetted, experienced nannies for every moment of your family's life.", cta: "Book on WhatsApp", cta2: "See services", verified: "Background checked", from: "from $140 /hr", imgAlt: "Nanny caring for three girls" },
+  hero: { badge: "Certified nannies · Guadalajara", h1a: "Your peace of mind,", h1b: "their", words: ["happiness", "laughter", "play", "adventure"], line: "Verified nannies in Guadalajara", sub: "Vetted, experienced nannies for every moment of your family's life.", cta: "Book on WhatsApp", cta2: "See services", verified: "Background checked", from: "from $140 /hr", imgAlt: "Nanny caring for three girls" },
   services: { title: "Services", label: "per hour · per nanny", perHour: "/hr", from: "from", items: {
     sol: { name: "sun", desc: "Daytime · errands, appointments or a free afternoon.", price: "$170" },
     luna: { name: "moon", desc: "Evening · go out to dinner worry-free.", price: "$190" },

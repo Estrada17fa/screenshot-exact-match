@@ -85,31 +85,56 @@ function Navbar() {
   );
 }
 
+function RotatingWord({ words }: { words: string[] }) {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    setI(0);
+    const id = setInterval(() => setI((n) => (n + 1) % words.length), 2500);
+    return () => clearInterval(id);
+  }, [words]);
+  return (
+    <span className="relative inline-block overflow-hidden align-bottom text-sun" aria-live="polite">
+      <span key={words[i]} className="word-in inline-block">{words[i]}</span>
+    </span>
+  );
+}
+
 function Hero() {
   const { t } = useLang();
+  const d = (n: number) => ({ animationDelay: `${n * 100}ms` });
   return (
-    <section id="top" className="relative flex min-h-svh items-center overflow-hidden pb-28 pt-24 lg:min-h-0 lg:pb-[112px] lg:pt-36">
-      <div className="container-k grid items-center gap-10 lg:grid-cols-2">
-        <Reveal>
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm"><span className="size-2 rounded-full bg-pink" />{t.hero.badge}</span>
-          <h1 className="mt-6 text-[50px] font-extrabold lg:text-[96px]">{t.hero.h1a} <span className="text-sun">{t.hero.h1b}</span></h1>
-          <p className="mt-6 max-w-md text-base text-muted-foreground lg:text-[17px]">{t.hero.sub}</p>
-          <div className="mt-8 hidden gap-3 lg:flex">
+    <section id="top" className="relative flex h-svh min-h-[640px] flex-col overflow-hidden pt-20 lg:h-auto lg:min-h-0 lg:pb-[112px] lg:pt-36">
+      <SunMark className="spin-slow pointer-events-none absolute -right-24 top-16 size-[320px] text-sun opacity-[0.08] lg:size-[560px]" />
+      <div className="container-k relative flex min-h-0 flex-1 flex-col gap-4 lg:grid lg:grid-cols-2 lg:items-center lg:gap-10">
+        <div className="relative z-10 shrink-0">
+          <span style={d(0)} className="hero-in inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm"><span className="size-2 rounded-full bg-pink" />{t.hero.badge}</span>
+          <h1 style={d(1)} className="hero-in mt-4 text-[40px] font-extrabold leading-[1.05] lg:mt-6 lg:text-[88px]">{t.hero.h1a}<br />{t.hero.h1b} <RotatingWord words={t.hero.words} />.</h1>
+          <p style={d(2)} className="hero-in mt-3 text-sm text-muted-foreground lg:mt-5 lg:text-base">{t.hero.line}</p>
+          <p style={d(3)} className="hero-in mt-6 hidden max-w-md text-[17px] text-muted-foreground lg:block">{t.hero.sub}</p>
+          <div style={d(4)} className="hero-in mt-8 hidden gap-3 lg:flex">
             <a href={waLink(t.wa)} target="_blank" rel="noopener noreferrer" className={btnPink}><MessageCircle className="size-5" />{t.hero.cta}</a>
             <a href="#servicios" className={btnGhost}>{t.hero.cta2}</a>
           </div>
-        </Reveal>
-        <Reveal delay={150} className="relative mx-auto w-full max-w-[420px] lg:max-w-[520px]">
-          <div className="glow-sun absolute -inset-16" />
-          <div className="relative aspect-square overflow-hidden rounded-full bg-sun">
-            <SunMark className="spin-slow absolute inset-[12%] text-sun-foreground/85" />
+        </div>
+        <div className="relative min-h-0 flex-1 pb-20 lg:aspect-square lg:pb-0">
+          <div className="relative h-full w-full">
+            <div className="sun-rise absolute bottom-0 left-1/2 aspect-square w-[min(110%,560px)] max-w-none translate-y-[18%]">
+              <div className="glow-sun absolute -inset-[25%]" />
+              <div className="relative h-full w-full rounded-full bg-sun">
+                <SunMark className="absolute inset-[18%] text-sun-foreground/80" />
+              </div>
+            </div>
             <span className="sr-only">{t.hero.imgAlt}</span>
           </div>
-          <div className="glass absolute left-0 top-[12%] flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold -rotate-2">
-            <span className="grid size-5 place-items-center rounded-full bg-sun text-sun-foreground"><Check className="size-3.5" strokeWidth={3} /></span>{t.hero.verified}
+          <div style={d(5)} className="hero-in absolute left-0 top-[28%] lg:top-[8%] z-10">
+            <div className="float-y glass flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold">
+              <span className="grid size-5 place-items-center rounded-full bg-sun text-sun-foreground"><Check className="size-3.5" strokeWidth={3} /></span>{t.hero.verified}
+            </div>
           </div>
-          <div className="absolute bottom-[10%] right-0 rotate-2 rounded-full bg-pink px-4 py-2 text-sm font-bold text-pink-foreground">{t.hero.from}</div>
-        </Reveal>
+          <div style={d(6)} className="hero-in absolute bottom-[30%] right-0 z-10 lg:bottom-[14%]">
+            <div className="float-y rounded-full bg-pink px-4 py-2 text-sm font-bold text-pink-foreground shadow-lg" style={{ animationDelay: "1.5s" }}>{t.hero.from}</div>
+          </div>
+        </div>
       </div>
       <div className="glass fixed inset-x-3 bottom-3 z-40 flex items-center gap-2 rounded-full p-2 lg:hidden">
         <a href={waLink(t.wa)} target="_blank" rel="noopener noreferrer" className={cn(btnPink, "flex-1")}><MessageCircle className="size-5" />{t.hero.cta}</a>
