@@ -3,6 +3,7 @@ import { Menu, X, ArrowDown, Check, ShieldCheck, HeartPulse, Languages, Camera, 
 import { useLang } from "@/content/i18n";
 import { services, team, waLink, type Tone } from "@/content/data";
 import { cn } from "@/lib/utils";
+import logoAsset from "@/assets/kanan-logo.png.asset.json";
 
 export function SunMark({ className }: { className?: string }) {
   const rays = Array.from({ length: 16 });
@@ -42,7 +43,11 @@ const btnPink = cn(btn, "bg-pink text-pink-foreground");
 const btnGhost = cn(btn, "border border-border text-foreground hover:bg-card");
 
 function Wordmark() {
-  return <a href="#top" className="font-display text-2xl font-extrabold tracking-tight">k'anan<span className="text-sun">.</span></a>;
+  return (
+    <a href="#top" aria-label="Kanan Childcare">
+      <img src={logoAsset.url} alt="Kanan Childcare" className="h-8 w-auto lg:h-10" />
+    </a>
+  );
 }
 
 function Navbar() {
