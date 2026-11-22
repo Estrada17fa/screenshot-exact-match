@@ -26,8 +26,16 @@ Al enviar: se guarda con folio K-0001, K-0002…, y aparece "¡Recibimos tu soli
 ## 5. Aviso por correo al administrador
 Primero reviso si tu proyecto puede enviar correos. Para enviar avisos necesitas un plan de pago y un dominio propio verificado. Si todavía no lo tienes, las reservas igual se guardan y se ven en /admin, y los correos se activan cuando el dominio esté listo.
 
+## 6. Ajustes extra que pediste
+- **Reservas nocturnas:** si la hora de fin es antes que la de inicio, cuenta como el día siguiente (10:00 pm–7:00 am = 9 horas), en el formulario y en el cálculo final.
+- **Fiesta:** en el paso 1, "¿Cuántas niñeras necesitas?" (1–5) con la nota "Recomendamos 1 niñera por cada 6 niños". Se usa en el total y se guarda; los demás planes = 1 niñera.
+- **Páginas nuevas:** /aviso-de-privacidad y /cancelaciones con texto provisional, enlazadas desde la casilla y el pie de página.
+- **Anti-spam:** campo oculto trampa + máximo 3 solicitudes por número de WhatsApp por hora.
+- **Hora de Ciudad de México:** no se permiten fechas pasadas y se piden mínimo 12 horas de anticipación, con un mensaje amable que invita a escribir por WhatsApp si es urgente.
+- **Correo aún no disponible:** tu proyecto todavía no tiene un dominio de correo, así que /admin mostrará arriba un contador de reservas "pendiente".
+
 ## Lo que necesito de ti
-- **El correo de administración** (con el que entrarás a /admin y que recibirá los avisos). Te lo pregunto en cuanto apruebes el plan.
+- **El correo de administración** (ya te lo pregunté en el chat).
 
 ## Detalles técnicos
 - Activar Lovable Cloud. Tabla `bookings` con todos los campos del brief + `internal_notes`, `assigned_nanny`, `payment_link`, `paid_amount`, `nannies_count`; `folio` generado con una secuencia (`'K-' || lpad(nextval,4,'0')`) y un trigger.
