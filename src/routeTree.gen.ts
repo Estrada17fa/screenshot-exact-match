@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AvisoDePrivacidadRouteImport } from './routes/aviso-de-privacidad'
 import { Route as CancelacionesRouteImport } from './routes/cancelaciones'
+import { Route as CuentaRouteImport } from './routes/cuenta'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,18 +35,25 @@ const CancelacionesRoute = CancelacionesRouteImport.update({
   path: '/cancelaciones',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CuentaRoute = CuentaRouteImport.update({
+  id: '/cuenta',
+  path: '/cuenta',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/aviso-de-privacidad': typeof AvisoDePrivacidadRoute
   '/cancelaciones': typeof CancelacionesRoute
+  '/cuenta': typeof CuentaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/aviso-de-privacidad': typeof AvisoDePrivacidadRoute
   '/cancelaciones': typeof CancelacionesRoute
+  '/cuenta': typeof CuentaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,21 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/aviso-de-privacidad': typeof AvisoDePrivacidadRoute
   '/cancelaciones': typeof CancelacionesRoute
+  '/cuenta': typeof CuentaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/aviso-de-privacidad' | '/cancelaciones'
+  fullPaths:
+    '/' | '/admin' | '/aviso-de-privacidad' | '/cancelaciones' | '/cuenta'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/aviso-de-privacidad' | '/cancelaciones'
-  id: '__root__' | '/' | '/admin' | '/aviso-de-privacidad' | '/cancelaciones'
+  to: '/' | '/admin' | '/aviso-de-privacidad' | '/cancelaciones' | '/cuenta'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/aviso-de-privacidad'
+    | '/cancelaciones'
+    | '/cuenta'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +83,7 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   AvisoDePrivacidadRoute: typeof AvisoDePrivacidadRoute
   CancelacionesRoute: typeof CancelacionesRoute
+  CuentaRoute: typeof CuentaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +116,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CancelacionesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cuenta': {
+      id: '/cuenta'
+      path: '/cuenta'
+      fullPath: '/cuenta'
+      preLoaderRoute: typeof CuentaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,6 +131,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRoute,
   AvisoDePrivacidadRoute: AvisoDePrivacidadRoute,
   CancelacionesRoute: CancelacionesRoute,
+  CuentaRoute: CuentaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
